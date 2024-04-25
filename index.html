@@ -53,6 +53,7 @@
             max-width: 300px;
             margin-left: 20px;
             border-radius: 10px;
+            cursor: pointer; /* Add cursor pointer */
         }
 
         .car h2 {
@@ -85,17 +86,6 @@
         }
 
         /* Lightbox styles */
-        .lightbox {
-            display: block;
-        }
-
-        .lightbox img {
-            max-width: 100%;
-            max-height: 100%;
-            margin: auto;
-            display: block;
-        }
-
         .overlay {
             position: fixed;
             top: 0;
@@ -106,6 +96,12 @@
             display: none;
             justify-content: center;
             align-items: center;
+            z-index: 9999;
+        }
+
+        .overlay img {
+            max-width: 80%;
+            max-height: 80%;
         }
     </style>
 </head>
@@ -116,64 +112,51 @@
 <div class="car" style="background-color: #f8f9fa;"> <!-- Light Gray -->
     <div class="car-info">
         <h2 style="color: black;">Toyota Supra MK4</h2><br>
-        <a href="supra.png" class="lightbox">
-            <img src="supra.png" alt="MK4" class="car-img">
-        </a>
-        <a href="supra_details.html" class="details-btn" style="background-color: #333; color: white; border-radius: 5px; padding: 10px 20px;">View Details</a>
+        <img src="supra.png" alt="MK4" class="car-img">
     </div>
 </div>
 
 <div class="car" style="background-color: #f8f9fa;"> <!-- Light Gray -->
     <div class="car-info">
         <h2 style="color: black;">Nissan Skyline GT-R R34</h2><br>
-        <a href="r34.jpg" class="lightbox">
-            <img src="r34.jpg" alt="R34" class="car-img">
-        </a>
-        <a href="GT-R R34_details.html" class="details-btn" style="background-color: #333; color: white; border-radius: 5px; padding: 10px 20px;">View Details</a>
+        <img src="r34.jpg" alt="R34" class="car-img">
     </div>
 </div>
 
 <div class="car" style="background-color: #f8f9fa;"> <!-- Light Gray -->
     <div class="car-info">
         <h2 style="color: black;">Dodge Challenger</h2><br>
-        <a href="dodge.jpg" class="lightbox">
-            <img src="dodge.jpg" alt="dodge" class="car-img">
-        </a>
-        <a href="dodge_details.html" class="details-btn" style="background-color: #333; color: white; border-radius: 5px; padding: 10px 20px;">View Details</a>
+        <img src="dodge.jpg" alt="dodge" class="car-img">
     </div>
 </div>
        
 <div class="car" style="background-color: #f8f9fa;"> <!-- Light Gray -->
     <div class="car-info">
         <h2 style="color: black;">Ford Mustang</h2><br>
-        <a href="mustang.jpg" class="lightbox">
-            <img src="mustang.jpg" alt="mustang" class="car-img">
-        </a>
-        <a href="mustang_details.html" class="details-btn" style="background-color: #333; color: white; border-radius: 5px; padding: 10px 20px;">View Details</a>
+        <img src="Mustang.jpg" alt="mustang" class="car-img">
     </div>
 </div>
 
-<div class="overlay">
+<div class="overlay" onclick="closeOverlay()">
     <img src="" alt="lightbox" id="overlay-img">
 </div>
 
 <script>
     // JavaScript for lightbox functionality
-    const lightboxLinks = document.querySelectorAll('.lightbox');
+    const carImages = document.querySelectorAll('.car-img');
     const overlay = document.querySelector('.overlay');
     const overlayImg = document.getElementById('overlay-img');
 
-    lightboxLinks.forEach(link => {
-        link.addEventListener('click', e => {
-            e.preventDefault();
-            overlayImg.src = e.target.getAttribute('href');
+    carImages.forEach(image => {
+        image.addEventListener('click', e => {
             overlay.style.display = 'flex';
+            overlayImg.src = e.target.src;
         });
     });
 
-    overlay.addEventListener('click', () => {
+    function closeOverlay() {
         overlay.style.display = 'none';
-    });
+    }
 </script>
 
     </div>
